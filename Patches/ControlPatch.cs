@@ -300,12 +300,14 @@ internal class ControllerManagerUpdatePatch
                 Utils.SendMessage(GetString("HostKillSelfByCommand"), title: $"<color=#ff0000>{GetString("DefaultSystemMessageTitle")}</color>");
             }
 
+#if DEBUG
             // Show intro
-            if (GetKeysDown(KeyCode.Return, KeyCode.G, KeyCode.LeftShift) && GameStates.IsInGame && PlayerControl.LocalPlayer.FriendCode.GetDevUser().DeBug)
+            if (GetKeysDown(KeyCode.Return, KeyCode.G, KeyCode.LeftShift) && GameStates.IsInGame)
             {
                 HudManager.Instance.StartCoroutine(HudManager.Instance.CoFadeFullScreen(Color.clear, Color.black));
                 HudManager.Instance.StartCoroutine(DestroyableSingleton<HudManager>.Instance.CoShowIntro());
             }
+#endif
 
             // Whether the toggle log is also output in the game
             if (GetKeysDown(KeyCode.F2, KeyCode.LeftControl))
@@ -391,8 +393,9 @@ internal class ControllerManagerUpdatePatch
                 }
             }
 
+#if DEBUG
             // Teleport all players to the Host
-            if (GetKeysDown(KeyCode.LeftShift, KeyCode.V, KeyCode.Return) && !GameStates.IsLobby && PlayerControl.LocalPlayer.FriendCode.GetDevUser().DeBug)
+            if (GetKeysDown(KeyCode.LeftShift, KeyCode.V, KeyCode.Return) && GameStates.IsModHost && !GameStates.IsLobby)
             {
                 Vector2 pos = PlayerControl.LocalPlayer.NetTransform.transform.position;
                 foreach (var pc in PlayerControl.AllPlayerControls)
@@ -404,6 +407,7 @@ internal class ControllerManagerUpdatePatch
                     }
                 }
             }
+#endif
 
             // Clear Vent
             if (Input.GetKeyDown(KeyCode.N))

@@ -184,10 +184,12 @@ class StartPatch
 
         Utils.CountAlivePlayers(sendLog: true, checkGameEnd: false);
 
-        if (Options.AllowConsole.GetBool() && PlayerControl.LocalPlayer.FriendCode.GetDevUser().DeBug)
+        if (Options.AllowConsole.GetBool())
         {
+#if DEBUG
             if (!BepInEx.ConsoleManager.ConsoleActive && BepInEx.ConsoleManager.ConsoleEnabled)
                 BepInEx.ConsoleManager.CreateConsole();
+#endif
         }
         else
         {

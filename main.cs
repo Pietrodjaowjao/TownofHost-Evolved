@@ -65,8 +65,6 @@ public class Main : BasePlugin
     public static readonly bool canaryRelease = false; // Latest: V2.4.0 Beta 4
     public static readonly bool fullRelease = true; // Latest: V2.2.0
 
-    public static bool hasAccess = true;
-
     public static readonly bool ShowUpdateButton = true;
 
     public static readonly bool ShowGitHubButton = true;
@@ -633,7 +631,6 @@ public class Main : BasePlugin
         TemplateManager.Init();
         TagManager.Init();
         //SpamManager.Init();
-        DevManager.Init();
         Cloud.Init();
 
         IRandom.SetInstance(new NetRandomWrapper());

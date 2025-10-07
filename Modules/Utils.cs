@@ -1470,15 +1470,6 @@ public static class Utils
             return;
         }
 
-        if (!(player.AmOwner || player.FriendCode.GetDevUser().HasTag()))
-        {
-            if (!IsPlayerModerator(player.FriendCode) && !IsPlayerVIP(player.FriendCode) && !TagManager.CheckFriendCode(player.FriendCode, false))
-            {
-                SetRealName();
-                return;
-            }
-        }
-
         void SetRealName()
         {
             string realName = Main.AllPlayerNames.TryGetValue(player.PlayerId, out var namePlayer) ? namePlayer : "";
@@ -1643,11 +1634,7 @@ public static class Utils
             };
         }
 
-        if (!name.Contains($"\r\r") && player.FriendCode.GetDevUser().HasTag() && player.IsModded())
-        {
-            name = player.FriendCode.GetDevUser().GetTag() + "<size=1.5>" + modtag + "</size>" + name;
-        }
-        else name = modtag + name;
+        name = modtag + name;
 
         // Set name
         if (name != player.name && player.CurrentOutfitType == PlayerOutfitType.Default)

@@ -75,19 +75,6 @@ class MainMenuManagerLateUpdatePatch
 
         //LoadingHint?.SetActive(!Options.IsLoaded);
         //__instance.playButton.transform.gameObject.SetActive(Options.IsLoaded);
-
-        var PlayOnlineButton = __instance.PlayOnlineButton;
-        if (PlayOnlineButton != null)
-        {
-            if (RunLoginPatch.isAllowedOnline && !Main.hasAccess)
-            {
-                var PlayLocalButton = __instance.playLocalButton;
-                if (PlayLocalButton != null) PlayLocalButton.gameObject.SetActive(false);
-
-                PlayOnlineButton.gameObject.SetActive(false);
-                DisconnectPopup.Instance.ShowCustom(GetString("NoAccess"));
-            }
-        }
     }
 }
 [HarmonyPatch(typeof(MainMenuManager))]

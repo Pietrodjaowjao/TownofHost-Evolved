@@ -683,14 +683,14 @@ class InnerNetClientSpawnPatch
                         }
                     }, 3.2f, "DisplayLastResult");
                 }
-                if (PlayerControl.LocalPlayer.FriendCode.GetDevUser().IsUp && Options.EnableUpMode.GetBool())
+                if (Options.EnableUpMode.GetBool())
                 {
                     _ = new LateTask(() =>
                     {
                         if (!AmongUsClient.Instance.IsGameStarted && client.Character != null)
                         {
                             Main.isChatCommand = true;
-                            //Utils.SendMessage($"{GetString("Message.YTPlanNotice")} {PlayerControl.LocalPlayer.FriendCode.GetDevUser().UpName}", client.Character.PlayerId);
+                            Utils.SendMessage($"{GetString("Message.YTPlanNotice")} {PlayerControl.LocalPlayer.GetRealName()}", client.Character.PlayerId);
                         }
                     }, 3.3f, "DisplayUpWarnning");
                 }

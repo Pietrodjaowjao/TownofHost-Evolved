@@ -234,13 +234,15 @@ class SetUpRoleTextPatch
         yield return null;
 
         sb.Append("------------Roles / Add-ons------------\n");
-        if (PlayerControl.LocalPlayer.FriendCode.GetDevUser().DeBug || GameStates.IsLocalGame)
+        if (GameStates.IsLocalGame)
         {
+#if DEBUG
             foreach (var pc in allPlayerControlsArray)
             {
                 if (pc == null) continue;
                 sb.Append($"{(pc.AmOwner ? "[*]" : string.Empty),-3}{pc.PlayerId,-2}:{Main.AllPlayerNames[pc.PlayerId].PadRightV2(20)}:{pc.GetAllRoleName().RemoveHtmlTags().Replace("\n", " + ")}\n");
             }
+#endif
         }
         else
         {

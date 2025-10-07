@@ -45,7 +45,6 @@ public enum CustomRPC : byte // 175/255 USED
     SyncNameNotify,
     ShowPopUp,
     KillFlash,
-    DumpLog,
     SetNameColorData,
     GuessKill,
     Judge,
@@ -161,7 +160,6 @@ internal class RPCHandlerPatch
         or CustomRPC.Guess
         or CustomRPC.PresidentEnd
         or CustomRPC.SetSwapperVotes
-        or CustomRPC.DumpLog
         or CustomRPC.SetFriendCode
         or CustomRPC.BetterCheck
         or CustomRPC.DictatorRPC;
@@ -647,13 +645,6 @@ internal class RPCHandlerPatch
                 Utils.FlashColor(new(1f, 0f, 0f, 0.3f));
                 var playKillSound = reader.ReadBoolean();
                 if (Constants.ShouldPlaySfx()) RPC.PlaySound(PlayerControl.LocalPlayer.PlayerId, playKillSound ? Sounds.KillSound : Sounds.SabotageSound);
-                break;
-            case CustomRPC.DumpLog:
-                var target = Utils.GetPlayerById(reader.ReadByte());
-                if (target != null && !target.FriendCode.GetDevUser().DeBug)
-                {
-                    Logger.Info($"Player {target.GetNameWithRole()} used /dump", "RPC_DumpLogger");
-                }
                 break;
             case CustomRPC.FixModdedClientCNO:
                 var CNO = reader.ReadNetObject<PlayerControl>();

@@ -1411,8 +1411,7 @@ public static class Options
         // Draft Mode
         DraftHeader = TextOptionItem.Create(10000033, "MenuTitle.Draft", TabGroup.ModSettings)
             .SetGameMode(CustomGameMode.Standard)
-            .SetColor(new Color32(255, 238, 232, byte.MaxValue))
-            .SetHidden((!PlayerControl.LocalPlayer?.FriendCode?.GetDevUser().IsDev) ?? true);
+            .SetColor(new Color32(255, 238, 232, byte.MaxValue));
 
         DraftMode = BooleanOptionItem.Create(61000, "UseDraftMode", true, TabGroup.ModSettings, false)
             .SetGameMode(CustomGameMode.Standard)
@@ -1432,12 +1431,6 @@ public static class Options
             .SetGameMode(CustomGameMode.Standard);
 
         Logger.Info("Draft Bucket Options set up", "OptionsHolder.CoLoadOptions");
-
-        if ((!PlayerControl.LocalPlayer?.FriendCode?.GetDevUser().IsDev) ?? true)
-        {
-            DraftMode.SetHidden(true);
-        }
-
         Logger.Info("End of Draft Setup", "Draft Setup");
 
         // Confirm Ejections Mode
