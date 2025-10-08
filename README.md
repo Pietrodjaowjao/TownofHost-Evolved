@@ -1,48 +1,26 @@
 
-<h1 align="center">Town of Host: Enhanced (TOHE)</h1>
+<h1 align="center">Town of Host: Evolved (TOHEV)</h1>
 
-<br>
-
-<img align="left" alt="Cover" src="Resources/Background/TOHE-Background-Old.jpg" width="50%" height="300" /> 
-
-<p align="right">
-  
-> ### Regarding this mod
->
 > This mod is not affiliated with Among Us or Innersloth LLC, and the content contained therein is not endorsed or otherwise sponsored by Innersloth LLC. Portions of the materials contained herein are the property of Innersloth LLC.
-<br>
-
-</p>
-<p align="center">
-
-<center>
-<a href="https://weareten.ca/" target="_blank"><img src="https://img.shields.io/badge/Website%20-%231DA1F2.svg?&style=for-the-badge&logo=vuedotjs&logoColor=white&color=3aa675"/></a>
-<a href="https://discord.gg/ten" target="_blank"><img src="https://img.shields.io/badge/Discord%20-%231DA1F2.svg?&style=for-the-badge&logo=discord&logoColor=white&color=5662f6"/></a>
-<a href="https://github.com/0xDrMoe/TownofHost-Enhanced/releases/latest" target="_blank"><img src="https://img.shields.io/badge/Latest Version%20-%231DA1F2.svg?&style=for-the-badge&logo=github&logoColor=white&color=181717"/></a>
-</center>
-
-
-
-</p>
-
----
-
-<br>
 
 **Credit to these mods and their developers for the code and help:**
+### :star: [TOHEN](https://github.com/KARPED1EM/TownOfHostEdited)
+> 
+> - Town of Host: Evolved was forked from Town of Host: Enhanced.
+> 
 ### :star: [TOHRE](https://github.com/Loonie-Toons/) 
 > 
 > - Town of Host: Enhanced was forked from Town of Host: Re-Edited.
 >
-### :star: [TOHE](https://github.com/KARPED1EM/TownOfHostEdited) :
+### :star: [TOHE](https://github.com/KARPED1EM/TownOfHostEdited)
 > 
 > - Town of Host: Re-Edited was forked from Town of Host: Edited. (TONX)
 > 
-### :star: [TOH](https://github.com/tukasa0001/TownOfHost) :
+### :star: [TOH](https://github.com/tukasa0001/TownOfHost)
 > 
 > - Our repo is based initially on Town of Host.
 > 
-### :star: [TOHY](https://github.com/Yumenopai/TownOfHost_Y) :
+### :star: [TOHY](https://github.com/Yumenopai/TownOfHost_Y)
 > 
 > - Many role ideas
 > - Provided roles: AntiAdminer, CursedWolf, Workaholic, Greedier (Greedy), DarkHide (Stalker)
@@ -50,24 +28,24 @@
 > - Ported new UI for settings (for version AU v2024.6.18)
 > - Reference: Role-Basis changer fix
 > 
-### :star: [TOH:TOR](https://github.com/discus-sions/TownOfHost-TheOtherRoles) :
+### :star: [TOH:TOR](https://github.com/discus-sions/TownOfHost-TheOtherRoles)
 > 
 > - Many role ideas
 > - Reference: Exile Confirm
 > - Reference: Split RPC Pack
 > 
-### :star: [SNR](https://github.com/ykundesu/SuperNewRoles) :
+### :star: [SNR](https://github.com/ykundesu/SuperNewRoles)
 > 
 > - Reference: Credentials menu
 > - Reference: Switch Horse Mode
 > - Reference: Search Mod Game
 > - Reference: Custom Button
 >
-### :star: [TOP](https://github.com/tugaru1975/TownOfPlus) :
+### :star: [TOP](https://github.com/tugaru1975/TownOfPlus)
 > 
 > - Reference: Zoom
 > 
-### :star: [RHR](https://github.com/sansaaaaai/Revolutionary-host-roles) :
+### :star: [RHR](https://github.com/sansaaaaai/Revolutionary-host-roles)
 > 
 > - Reference: Modify settings menu (Last used [1.6.0](https://github.com/0xDrMoe/TownofHost-Enhanced/releases/tag/v1.6.0))
 > 
