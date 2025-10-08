@@ -121,7 +121,7 @@ public static class MainMenuManagerPatch
         GameObject splashArt = new("SplashArt");
         splashArt.transform.position = new Vector3(0, 0f, 600f); //= new Vector3(0, 0.40f, 600f);
         var spriteRenderer = splashArt.AddComponent<SpriteRenderer>();
-        string folder = "TOHE.Resources.Background.";
+        string folder = "TOHEV.Resources.Background.";
         IRandom rand = IRandom.Instance;
         if (rand.Next(0, 100) < 30) folder += "PrevArtWinner";
         else folder += "CurrentArtWinner";

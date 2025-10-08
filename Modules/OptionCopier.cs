@@ -7,7 +7,7 @@ namespace TOHE.Modules;
 public static class OptionCopier
 {
     [Obfuscation(Exclude = true)]
-    private static readonly DirectoryInfo SaveDataDirectoryInfo = new("./TOHE-DATA/Presets/");
+    private static readonly DirectoryInfo SaveDataDirectoryInfo = new("./TOHEV-DATA/Presets/");
 
     private static FileInfo OptionCopierFileInfo(string fileName) => new($"{SaveDataDirectoryInfo.FullName}/{(fileName.EndsWith(".preset") ? fileName : fileName + ".preset")}");
 

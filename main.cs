@@ -24,7 +24,7 @@ using UnityEngine;
 [assembly: AssemblyVersion(TOHE.Main.PluginVersion)]
 namespace TOHE;
 
-[BepInPlugin(PluginGuid, "TOHE", PluginVersion)]
+[BepInPlugin(PluginGuid, "TOHEV", PluginVersion)]
 [BepInIncompatibility("jp.ykundesu.supernewroles")]
 [BepInIncompatibility("com.ten.betteramongus")]
 [BepInIncompatibility("com.ten.thebetterroles")]
@@ -40,15 +40,10 @@ public class Main : BasePlugin
     // == Program Config ==
     public const string OriginalForkId = "OriginalTOH";
 
-    public static readonly string ModName = "TOHE";
-    public static readonly string ForkId = "TOHE";
-    public static readonly string ModColor = "#ffc0cb";
+    public static readonly string ModName = "TOHEV";
+    public static readonly string ForkId = "TOHEV";
+    public static readonly string ModColor = "#ffb6c1";
     public static readonly bool AllowPublicRoom = true;
-
-    public static HashAuth DebugKeyAuth { get; private set; }
-    public const string DebugKeyHash = "c0fd562955ba56af3ae20d7ec9e64c664f0facecef4b3e366e109306adeae29d";
-    public const string DebugKeySalt = "59687b";
-    public static string FileHash { get; private set; } = "";
 
     public static ConfigEntry<string> DebugKeyInput { get; private set; }
 
@@ -146,7 +141,7 @@ public class Main : BasePlugin
     public static readonly Dictionary<byte, Color32> PlayerColors = [];
     public static readonly Dictionary<byte, PlayerState.DeathReason> AfterMeetingDeathPlayers = [];
     public static readonly Dictionary<CustomRoles, string> roleColors = [];
-    public const string LANGUAGE_FOLDER_NAME = "TOHE-DATA/Language";
+    public const string LANGUAGE_FOLDER_NAME = "TOHEV-DATA/Language";
 
     public static bool IsFixedCooldown => CustomRoles.Vampire.IsEnable() || CustomRoles.Poisoner.IsEnable();
     public static float RefixCooldownDelay = 0f;
@@ -350,7 +345,7 @@ public class Main : BasePlugin
         {
             roleColors.Clear();
             var assembly = Assembly.GetExecutingAssembly();
-            string resourceName = "TOHE.Resources.roleColor.json";
+            string resourceName = "TOHEV.Resources.roleColor.json";
             using (Stream stream = assembly.GetManifestResourceStream(resourceName))
             {
                 if (stream != null)
@@ -517,19 +512,6 @@ public class Main : BasePlugin
         File.WriteAllText(@$"./{LANGUAGE_FOLDER_NAME}/export_RoleColor.dat", sb.ToString());
     }
 
-    private void InitializeFileHash()
-    {
-        var file = Assembly.GetExecutingAssembly();
-        using var stream = file.Location != null ? File.OpenRead(file.Location) : null;
-        if (stream != null)
-        {
-            using var sha256 = SHA256.Create();
-            var hashBytes = sha256.ComputeHash(stream);
-            FileHash = BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
-            TOHE.Logger.Msg("Assembly Hash: " + FileHash, "Plugin Load");
-        }
-    }
-
     public override void Load()
     {
         Instance = this;
@@ -567,7 +549,7 @@ public class Main : BasePlugin
             // Disable Horse Mode since it cause client crash
         }
 
-        Logger = BepInEx.Logging.Logger.CreateLogSource("TOHE");
+        Logger = BepInEx.Logging.Logger.CreateLogSource("TOHEV");
         coroutines = AddComponent<Coroutines>();
         dispatcher = AddComponent<Dispatcher>();
         TOHE.Logger.Enable();
@@ -598,12 +580,6 @@ public class Main : BasePlugin
             TOHE.Logger.Disable("CustomRpcSender");
         }
         //TOHE.Logger.isDetail = true;
-
-        // 認証関連-初期化
-        DebugKeyAuth = new HashAuth(DebugKeyHash, DebugKeySalt);
-
-        // 認証関連-認証
-        DebugModeManager.Auth(DebugKeyAuth, DebugKeyInput.Value);
 
         Preset1 = Config.Bind("Preset Name Options", "Preset1", "Preset_1");
         Preset2 = Config.Bind("Preset Name Options", "Preset2", "Preset_2");
@@ -667,8 +643,6 @@ public class Main : BasePlugin
         // ConsoleManager.DetachConsole();
         if (DebugModeManager.AmDebugger) ConsoleManager.CreateConsole();
 
-        // InitializeFileHash();
-        FileHash = "drafting_2025_09_09";
         TOHE.Logger.Msg("========= TOHE loaded! =========", "Plugin Load");
     }
 }

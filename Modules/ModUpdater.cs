@@ -76,8 +76,8 @@ public class ModUpdater
 
     const string RegionConfigPath = "./BepInEx/config/at.duikbo.regioninstall.cfg";
     const string MiniRegionInstallPath = "./BepInEx/plugins/Mini.RegionInstall.dll";
-    const string RegionConfigResource = "TOHE.Resources.at.duikbo.regioninstall.cfg";
-    const string MiniRegionInstallResource = "TOHE.Resources.Mini.RegionInstall.dll";
+    const string RegionConfigResource = "TOHEV.Resources.at.duikbo.regioninstall.cfg";
+    const string MiniRegionInstallResource = "TOHEV.Resources.Mini.RegionInstall.dll";
     private static void CheckCustomRegions()
     {
         var regions = ServerManager.Instance.AvailableRegions;
@@ -283,7 +283,7 @@ public class ModUpdater
         try
         {
             var fileName = Assembly.GetExecutingAssembly().Location;
-            if (Directory.Exists("TOH_DATA") && File.Exists(@"./TOHE-DATA/BanWords.txt"))
+            if (Directory.Exists("TOH_DATA") && File.Exists(@"./TOHEV-DATA/BanWords.txt"))
             {
                 DirectoryInfo di = new("TOH_DATA");
                 di.Delete(true);

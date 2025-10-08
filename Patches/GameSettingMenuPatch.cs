@@ -165,7 +165,7 @@ public class GameSettingMenuPatch
         var SpriteRenderer = preset.GetComponentInChildren<SpriteRenderer>();
         SpriteRenderer.color = Color.white;
         //SpriteRenderer.material = null;
-        SpriteRenderer.sprite = Utils.LoadSprite("TOHE.Resources.Images.PresetBox.png", 55f);
+        SpriteRenderer.sprite = Utils.LoadSprite("TOHEV.Resources.Images.PresetBox.png", 55f);
 
         Color clr = new(-1, -1, -1);
         var PLabel = preset.GetComponentInChildren<TextMeshPro>();
@@ -265,9 +265,9 @@ public class GameSettingMenuPatch
         Object.Destroy(button.FindChild("Disabled").FindChild("Icon").GetComponent<SpriteRenderer>());
         Object.Destroy(button.transform.FindChild("Text").GetComponent<TextMeshPro>());
 
-        button.FindChild("Normal").FindChild("Background").GetComponent<SpriteRenderer>().sprite = Utils.LoadSprite("TOHE.Resources.Images.SearchIconActive.png", 100f);
-        button.FindChild("Hover").FindChild("Background").GetComponent<SpriteRenderer>().sprite = Utils.LoadSprite("TOHE.Resources.Images.SearchIconHover.png", 100f);
-        button.FindChild("Disabled").FindChild("Background").GetComponent<SpriteRenderer>().sprite = Utils.LoadSprite("TOHE.Resources.Images.SearchIcon.png", 100f);
+        button.FindChild("Normal").FindChild("Background").GetComponent<SpriteRenderer>().sprite = Utils.LoadSprite("TOHEV.Resources.Images.SearchIconActive.png", 100f);
+        button.FindChild("Hover").FindChild("Background").GetComponent<SpriteRenderer>().sprite = Utils.LoadSprite("TOHEV.Resources.Images.SearchIconHover.png", 100f);
+        button.FindChild("Disabled").FindChild("Background").GetComponent<SpriteRenderer>().sprite = Utils.LoadSprite("TOHEV.Resources.Images.SearchIcon.png", 100f);
 
         if (DestroyableSingleton<TranslationController>.Instance.currentLanguage.languageID == SupportedLangs.Russian)
         {

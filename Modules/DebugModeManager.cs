@@ -17,17 +17,11 @@ false;
 
     public static OptionItem EnableDebugMode;
 
-    public static void Auth(HashAuth auth, string input)
-    {
-        // AmDebugger = デバッグビルドである || デバッグキー認証が通った
-        AmDebugger = AmDebugger || auth.CheckString(input);
-    }
     public static void SetupCustomOption()
     {
         EnableDebugMode = BooleanOptionItem.Create(2, "EnableDebugMode", false, TabGroup.SystemSettings, true)
             .SetHeader(true)
             .SetColor(Color.green)
-            .SetHeader(true)
-            .SetHidden(!AmDebugger);
+            .SetHeader(true);
     }
 }

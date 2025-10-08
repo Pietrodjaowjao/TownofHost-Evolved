@@ -6,7 +6,7 @@ namespace TOHE;
 
 public static class CustomButton
 {
-    public static Sprite Get(string name) => Utils.LoadSprite($"TOHE.Resources.Images.Skills.{name}.png", 115f);
+    public static Sprite Get(string name) => Utils.LoadSprite($"TOHEV.Resources.Images.Skills.{name}.png", 115f);
 }
 
 [HarmonyPriority(Priority.First)]

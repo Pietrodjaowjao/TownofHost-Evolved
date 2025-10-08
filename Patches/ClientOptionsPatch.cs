@@ -151,11 +151,12 @@ public static class OptionsMenuBehaviourStartPatch
                 Main.Instance.Unload();
             }
         }
-
+#if DEBUG
         if ((AutoRehost == null || AutoRehost.ToggleButton == null) && DebugModeManager.AmDebugger)
         {
             AutoRehost = ClientOptionItem.Create("AutoRehost", Main.AutoRehost, __instance);
         }
+#endif
     }
 }
 
