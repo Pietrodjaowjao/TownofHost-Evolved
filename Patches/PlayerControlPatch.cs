@@ -1292,7 +1292,7 @@ class FixedUpdateInNormalGamePatch
             var playerName = player.name;
             var moddedTag = new StringBuilder();
 
-            if (Main.ShowModdedClientText.Value && Main.playerVersion.TryGetValue(playerClientId, out var ver))
+            if (Main.ShowModdedClientText.Value && !player.IsHost() && Main.playerVersion.TryGetValue(playerClientId, out var ver))
             {
                 if (Main.ForkId != ver.forkId)
                 {
@@ -1309,6 +1309,10 @@ class FixedUpdateInNormalGamePatch
                 {
                     moddedTag.Append($"<color=#ff0000><size=1.4>v{ver.version}</size>\n{playerName}</color>");
                 }
+            }
+            else if (player.IsHost())
+            {
+                moddedTag.Append($"<color={Main.ModColor}><size=1.4>{GetString("HostText")}</size>\n{playerName}</color>");
             }
             else if (Main.BAUPlayers.TryGetValue(playerData, out var puid) && puid == playerData.Puid)
             {

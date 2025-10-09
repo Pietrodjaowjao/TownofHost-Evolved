@@ -17,6 +17,7 @@ public interface IRandom
         { 1, typeof(HashRandomWrapper) },
         { 2, typeof(Xorshift) },
         { 3, typeof(MersenneTwister) },
+        { 4, typeof(HWRandom) }, // Uses hardware acceleration for true-like randomness, slower in most devices.
     };
 
     public static IRandom Instance { get; private set; }

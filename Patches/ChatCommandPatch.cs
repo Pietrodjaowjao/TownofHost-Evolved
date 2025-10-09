@@ -60,7 +60,6 @@ internal class ChatCommands
             ChatManager.SendMessage(PlayerControl.LocalPlayer, text);
         }
         //if (text.Length >= 3) if (text[..2] == "/r" && text[..3] != "/rn" && text[..3] != "/rs") args[0] = "/r";
-        if (text.Length >= 4) if (text[..3] == "/up") args[0] = "/up";
 
         if (Main.Daybreak) goto Canceled;
         if (GuessManager.GuesserMsg(PlayerControl.LocalPlayer, text)) goto Canceled;
@@ -400,17 +399,11 @@ internal class ChatCommands
                     var addonCount = $"{GetString("NoLimitAddonsNumMax")}: {Options.NoLimitAddonsNumMax.GetInt()}";
                     Utils.SendMessage($"{impCount}\n{nnkCount}\n{nkCount}\n{apocCount}\n{covCount}\n{addonCount}", PlayerControl.LocalPlayer.PlayerId, $"<color={Main.ModColor}>{GetString("FactionSettingsTitle")}</color>");
                     break;
-                /* TODO WARN PLAYERS FOR UP
-                case "/up":
+                    
+                case "/setrole":
                 case "/指定":
                 case "/成为":
                     canceled = true;
-                    subArgs = text.Remove(0, 3);
-                    if (!PlayerControl.LocalPlayer.FriendCode.GetDevUser().IsUp)
-                    {
-                        Utils.SendMessage($"{GetString("InvalidPermissionCMD")}", PlayerControl.LocalPlayer.PlayerId);
-                        break;
-                    }
                     if (!Options.EnableUpMode.GetBool())
                     {
                         Utils.SendMessage(string.Format(GetString("Message.YTPlanDisabled"), GetString("EnableYTPlan")), PlayerControl.LocalPlayer.PlayerId);
@@ -421,9 +414,8 @@ internal class ChatCommands
                         Utils.SendMessage(GetString("Message.OnlyCanUseInLobby"), PlayerControl.LocalPlayer.PlayerId);
                         break;
                     }
-                    SendRolesInfo(subArgs, PlayerControl.LocalPlayer.PlayerId, isUp: true);
+                    SendRolesInfo(string.Join(" ", args.Skip(1)), PlayerControl.LocalPlayer.PlayerId, isUp: true);
                     break;
-                */
 
                 //case "/setbasic":
                 //    canceled = true;
@@ -1056,16 +1048,6 @@ internal class ChatCommands
                     canceled = true;
                     if (Main.newLobby) Cloud.ShareLobby(true);
                     else Utils.SendMessage("很抱歉，每个房间车队姬只会发一次", PlayerControl.LocalPlayer.PlayerId);
-                    break;
-                */
-
-                /* TODO Warn SetRole
-                case "/setrole":
-                case "/设置的职业":
-                case "/指定的职业":
-                    canceled = true;
-                    subArgs = text.Remove(0, 8);
-                    SendRolesInfo(subArgs, PlayerControl.LocalPlayer.PlayerId);
                     break;
                 */
 
@@ -2149,7 +2131,7 @@ internal class ChatCommands
         return result;
     }
 
-    public static void SendRolesInfo(string role, byte playerId, bool isDev = false)
+    public static void SendRolesInfo(string role, byte playerId, bool isUp = false)
     {
         switch (Options.CurrentGameMode)
         {
@@ -2166,11 +2148,12 @@ internal class ChatCommands
         }
         role = role.Trim().ToLower();
         if (role.StartsWith("/r")) _ = role.Replace("/r", string.Empty);
-        if (role.StartsWith("/up")) _ = role.Replace("/up", string.Empty);
+        if (role.StartsWith("/setrole")) _ = role.Replace("/setrole", string.Empty);
         if (role.EndsWith("\r\n")) _ = role.Replace("\r\n", string.Empty);
         if (role.EndsWith("\n")) _ = role.Replace("\n", string.Empty);
         if (role.StartsWith("/bt")) _ = role.Replace("/bt", string.Empty);
         if (role.StartsWith("/rt")) _ = role.Replace("/rt", string.Empty);
+        Logger.Info($"Role {role}", "SendRolesInfo");
 
         if (role == "" || role == string.Empty)
         {
@@ -2183,6 +2166,18 @@ internal class ChatCommands
         if (result == CustomRoles.NotAssigned)
         {
             Utils.SendMessage(GetString("Message.CanNotFindRoleThePlayerEnter"), playerId);
+            return;
+        }
+
+        byte pid = playerId == 255 ? (byte)0 : playerId;
+
+        if (isUp)
+        {
+            GhostRoleAssign.forceRole.Remove(pid);
+            RoleAssign.SetRoles[pid] = result;
+
+            Utils.SendMessage(string.Format(GetString("Message.YTPlanSelected"), Translator.GetActualRoleName(result)), playerId);
+            Utils.SendMessage(string.Format(GetString("Message.SetRoleCommandUsedBy"), Utils.GetPlayerById(playerId).GetRealName()), 255, $"<color=#aaaaff>{GetString("DefaultSystemMessageTitle")}</color>");
             return;
         }
 
@@ -2474,20 +2469,21 @@ internal class ChatCommands
                 var addonCount = $"{GetString("NoLimitAddonsNumMax")}: {Options.NoLimitAddonsNumMax.GetInt()}";
                 Utils.SendMessage($"{impCount}\n{nnkCount}\n{nkCount}\n{apocCount}\n{covCount}\n{addonCount}", player.PlayerId, $"<color={Main.ModColor}>{GetString("FactionSettingsTitle")}</color>");
                 break;
-            case "/up":
+            case "/setrole":
             case "/指定":
             case "/成为":
-                _ = text.Remove(0, 3);
+                if (!TagManager.CanUseUpCommand(player.FriendCode))
+                {
+                    Utils.SendMessage($"{GetString("InvalidPermissionCMD")}", player.PlayerId);
+                    break;
+                }
                 if (!Options.EnableUpMode.GetBool())
                 {
                     Utils.SendMessage(string.Format(GetString("Message.YTPlanDisabled"), GetString("EnableYTPlan")), player.PlayerId);
                     break;
                 }
-                else
-                {
-                    Utils.SendMessage(GetString("Message.OnlyCanBeUsedByHost"), player.PlayerId);
-                    break;
-                }
+                SendRolesInfo(string.Join(" ", args.Skip(1)), player.PlayerId, isUp: true);
+                break;
 
             case "/win":
             case "/winner":

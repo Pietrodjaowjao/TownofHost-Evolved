@@ -941,7 +941,7 @@ class IntroCutsceneDestroyPatch
             }
 
 
-            if (GhostRoleAssign.forceRole.Any()) // Incase user has /up access
+            if (GhostRoleAssign.forceRole.Any()) // Incase user has /setrole access
             {
                 // Needs to be delayed for the game to load it properly
                 _ = new LateTask(() =>
