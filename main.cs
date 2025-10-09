@@ -24,7 +24,7 @@ using UnityEngine;
 [assembly: AssemblyVersion(TOHE.Main.PluginVersion)]
 namespace TOHE;
 
-[BepInPlugin(PluginGuid, "TOHEV", PluginVersion)]
+[BepInPlugin(PluginGuid, ModName, PluginVersion)]
 [BepInIncompatibility("jp.ykundesu.supernewroles")]
 [BepInIncompatibility("com.ten.betteramongus")]
 [BepInIncompatibility("com.ten.thebetterroles")]
@@ -34,20 +34,21 @@ namespace TOHE;
 [BepInIncompatibility("com.emptybottle.townofhost")]
 [BepInIncompatibility("me.eisbison.theotherroles")]
 [BepInIncompatibility("com.discussions.LotusContinued")]
+[BepInIncompatibility("com.0xdrmoe.townofhostenhanced")]
 [BepInProcess("Among Us.exe")]
 public class Main : BasePlugin
 {
     // == Program Config ==
     public const string OriginalForkId = "OriginalTOH";
 
-    public static readonly string ModName = "TOHEV";
+    public const string ModName = "TOH: Evolved";
     public static readonly string ForkId = "TOHEV";
     public static readonly string ModColor = "#ffb6c1";
     public static readonly bool AllowPublicRoom = true;
 
     public static ConfigEntry<string> DebugKeyInput { get; private set; }
 
-    public const string PluginGuid = "com.0xdrmoe.townofhostenhanced";
+    public const string PluginGuid = "com.pietronico.townofhostevolved";
     public const string PluginVersion = "2025.0931.240.00000"; // YEAR.MMDD.VERSION.CANARYDEV
     public const string PluginDisplayVersion = "2.4.0";
     public static readonly List<(int year, int month, int day, int revision)> SupportedVersionAU =
@@ -66,12 +67,12 @@ public class Main : BasePlugin
     public static readonly string GitHubInviteUrl = "https://github.com/Pietrodjaowjao/TownofHost-Evolved";
 
     public static readonly bool ShowDiscordButton = true;
-    public static readonly string DiscordInviteUrl = "https://discord.gg/ten";
+    public static readonly string DiscordInviteUrl = "https://discord.gg/eCqQAYYH9Y";
 
-    public static readonly bool ShowWebsiteButton = true;
+    public static readonly bool ShowWebsiteButton = false;
     public static readonly string WebsiteInviteUrl = "https://weareten.ca/";
 
-    public static readonly bool ShowDonationButton = true;
+    public static readonly bool ShowDonationButton = false;
     public static readonly string DonationInviteUrl = "https://weareten.ca/TOHE";
 
     public Harmony Harmony { get; } = new Harmony(PluginGuid);
